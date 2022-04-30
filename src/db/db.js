@@ -14,6 +14,16 @@ const getDocumentData = async () => {
     return err.message;
   }
 };
+
+const getTitles = async () => {
+    try {
+      const docData = await getDocumentData();
+      return docData.map(doc => doc.Title)
+    } catch (error) {
+      return error
+    }
+  };
+
 const getDocDataByTitle = async title => {
   try {
     const docData = await getDocumentData();
@@ -51,4 +61,4 @@ const getDocument = async (title, timestamp) => {
   }
 };
 
-module.exports ={ getDocumentData, getRevisionByTimeStamp, getDocument, getDocDataByTitle };
+module.exports ={ getDocumentData, getRevisionByTimeStamp, getDocument, getDocDataByTitle, getTitles };

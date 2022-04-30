@@ -5,6 +5,18 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
     try {
+      const titles = await db.getTitles();
+      return res.status(200).json({
+        success: true,
+        data: titles
+      });
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+  router.get('/:title', async (req, res, next) => {
+    try {
       res.status(501).json({ message: 'Not Implemented' });
     } catch (err) {
       return next(err);
@@ -47,5 +59,12 @@ router.get('/', async (req, res, next) => {
     }
   });
   
+  router.post('/document/:title', async (req, res, next) => {
+    try {
+      res.status(501).json({ message: 'Not Implemented' });
+    } catch (err) {
+      return next(err);
+    }
+  });
 
 module.exports = router
