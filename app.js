@@ -1,13 +1,8 @@
 const express  = require("express");
 
-const port = 3000;
 const app = express();
 
 const documentRouter  = require("./src/routes/documents.js");
-
-
-//set port for app
-app.listen(port, () => console.log(`Listening on ${port}`));
 
 app.use("/documents", documentRouter);
 

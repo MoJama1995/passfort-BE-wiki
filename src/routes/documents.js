@@ -3,15 +3,15 @@ const db  = require("../db/db.js")
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
       res.status(501).json({ message: 'Not Implemented' });
     } catch (err) {
-      return (err);
+      return next(err);
     }
   });
   
-  router.get('/:title/latest', async (req, res,) => {
+  router.get('/:title/latest', async (req, res, next) => {
     try {
       const { title } = req.params;
       const revision = await db.getRevisionByTimeStamp(title);
@@ -21,11 +21,11 @@ router.get('/', async (req, res) => {
         data: document
       });
     } catch (err) {
-      return err;
+      return next(err);
     }
   });
   
-  router.get('/:title/:timestamp', async (req, res,) => {
+  router.get('/:title/:timestamp', async (req, res, next) => {
     try {
       const { title, timestamp } = req.params;
       let document; 
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
           data: document
       })}
     } catch (err) {
-      return (err);
+      return next(err);
     }
   });
   
